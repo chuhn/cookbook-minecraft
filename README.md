@@ -2,18 +2,29 @@
 
 ##Description
 
-Installs vanilla [Minecraft](http://www.minecraft.net) server.
+Installs the vanilla [Minecraft](http://www.minecraft.net) server.
+
+* Source Code: http://github.com/gregf/cookbook-minecraft
 
 ##Requirements
 
-Requires the [java](http://community.opscode.com/cookbooks/java) and [tmux](http://community.opscode.com/cookbooks/tmux) cookbooks.
+###Chef
 
-###Platform
+Tested on chef 11
+
+###Cookbooks
+
+* [java](http://community.opscode.com/cookbooks/java)
+* [runit](http://community.opscode.com/cookbooks/runit)
+* [build-essential](http://community.opscode.com/cookbooks/build-essential)
+* [logrotate](http://community.opscode.com/cookbooks/logrotate)
+
+###Platforms
 
 Supported platforms:
 
 * Debian 6
-* Ubuntu 12.04
+* Ubuntu 12.04+
 * Centos 6.4
 
 ##Attributes
@@ -80,35 +91,37 @@ you would like changed.
 
 ###default
 
-Include the default recipe into your run_list to install `minecraft` server.
+Include the default recipe into your run_list to install a `minecraft` server.
 Configuration files are prepopulated based on values in attributes. I will keep
 the defaults in sync with upstream.
 
-##TODO
+##Contributing
 
-* Clean up attributes
-* Test kitchen
-* Bukkit support or just wait for 1.5?
+e.g.
 
-##License
+1. Fork the repository on Github
+2. Create a named feature branch (like `add_component_x`)
+3. Write you change
+4. Write tests for your change (if applicable)
+5. Run the tests, ensuring they all pass
+6. Submit a Pull Request using Github
 
-Copyright 2012, Greg Fitzgerald
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-the following conditions:
-permit persons to whom the Software is furnished to do so, subject to
+##License and Authors
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+Authors: Greg Fitzgerald <greg@gregf.org>
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+```
+# Copyright 2013, Greg Fitzgerald.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+```
