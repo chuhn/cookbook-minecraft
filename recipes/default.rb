@@ -28,12 +28,11 @@ include_recipe 'runit'
 include_recipe 'java::default'
 include_recipe 'logrotate'
 
-jar_name = "#{node['minecraft']['jar']}.#{node['minecraft']['version']}.jar"
-minecraft_jar = "#{Chef::Config['file_cache_path']}/minecraft_server.jar"
+mc_jar = "minecraft_server.#{node['minecraft']['version']}.jar"
+source_url = "#{node['minecraft']['base_url']}/#{node['minecraft']['version']}/#{mc_jar}"
+
 uid = node['minecraft']['user']
 gid = node['minecraft']['group']
-
-node.default['minecraft']['jar_name'] = jar_name
 
 user uid do
   system true
@@ -43,10 +42,7 @@ user uid do
   action :create
 end
 
-source_url = "#{node['minecraft']['base_url']}/#{node['minecraft']['version']}/#{jar_name}"
-log "Using #{jar_name}, stored locally as #{minecraft_jar} and fetched from #{source_url}"
-
-remote_file minecraft_jar do
+remote_file "#{Chef::Config['file_cache_path']}/#{mc_jar}" do
   source "#{source_url}"
   checksum node['minecraft']['checksum']
   owner uid
@@ -63,10 +59,11 @@ directory node['minecraft']['install_dir'] do
   recursive true
 end
 
-execute 'copy-minecraft_server.jar' do
+execute 'copy minecraft server jar file' do
   cwd node['minecraft']['install_dir']
-  command "cp -p #{minecraft_jar} ."
-  creates "#{node['minecraft']['install_dir']}/#{jar_name}"
+  command "cp -p #{Chef::Config['file_cache_path']}/#{mc_jar} ."
+  creates "#{node['minecraft']['install_dir']}/#{mc_jar}"
+  not_if { ::File.exists?("#{node['minecraft']['install_dir']}/#{mc_jar}") }
 end
 
 %w[ops.txt server.properties banned-ips.txt

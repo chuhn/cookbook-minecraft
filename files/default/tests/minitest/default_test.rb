@@ -5,16 +5,16 @@ require 'minitest/spec'
 
 describe_recipe 'minecraft::default' do
   it 'ensures minecraft is installed' do
-    file('/srv/minecraft/minecraft_server.jar').must_exist
+    file("#{node['minecraft']['install_dir']}/minecraft_server.#{node['minecraft']['version']}.jar").must_exist
   end
 
   it 'ensures a config file is present' do
-    file('/srv/minecraft/server.properties').must_exist
+    file("#{node['minecraft']['install_dir']}/server.properties").must_exist
   end
 
   it 'should have proper permissions' do
-    assert_directory '/srv/minecraft', 'minecraft', 'minecraft', '755'
-    assert_file '/srv/minecraft/minecraft_server.jar', 'minecraft', 'minecraft', '644'
+    directory(node['minecraft']['install_dir']).must_exist.with(:owner, node['minecraft']['user']).and(:group, node['minecraft']['group']).and(:mode, "755")
+    assert_file "#{node['minecraft']['install_dir']}/minecraft_server.#{node['minecraft']['version']}.jar", node['minecraft']['user'], node['minecraft']['group'], '644'
   end
 
   it 'ensures minecraft is running' do
