@@ -34,7 +34,7 @@ See `attributes/default.rb` for default values.
 #### Server setup options
 
 * `default['minecraft']['user']`
-* `default['minecraft']['install_dir']`
+* `default['minecraft']['dir']`
 * `default['minecraft']['base_url']`
 * `default['minecraft']['jar']`
 

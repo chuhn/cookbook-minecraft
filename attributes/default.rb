@@ -1,6 +1,6 @@
 default['minecraft']['user']                = 'minecraft'
 default['minecraft']['group']               = 'minecraft'
-default['minecraft']['install_dir']         = '/srv/minecraft'
+default['minecraft']['dir']                 = '/srv/minecraft'
 default['minecraft']['version']             = '1.6.2'
 default['minecraft']['base_url']            = 'https://s3.amazonaws.com/Minecraft.Download/versions'
 default['minecraft']['checksum']            = '99a7f4088226f5574ec47fa69fda4779376499e5c9c5b8c2342563c7ac35368e'

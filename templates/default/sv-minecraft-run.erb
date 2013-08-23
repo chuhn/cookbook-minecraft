@@ -1,5 +1,5 @@
 #!/bin/sh
-cd <%= node['minecraft']['install_dir'] %>
+cd <%= node['minecraft']['dir'] %>
 exec 2>&1
 <% if node['minecraft']['ipv6'] -%>
 exec chpst -u <%= node['minecraft']['user'] %>:<%= node['minecraft']['user'] %> /usr/bin/java -server -Xincgc -Xms<%= node['minecraft']['xms']%> -Xmx<%= node['minecraft']['xmx'] %> -Djava.net.preferIPv4Stack=false -jar <%= "minecraft_server.#{node['minecraft']['version']}.jar" %> nogui

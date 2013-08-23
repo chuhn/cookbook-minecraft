@@ -37,7 +37,7 @@ gid = node['minecraft']['group']
 user uid do
   system true
   comment 'Minecraft Server'
-  home node['minecraft']['install_dir']
+  home node['minecraft']['dir']
   shell '/bin/false'
   action :create
 end
@@ -51,7 +51,7 @@ remote_file "#{Chef::Config['file_cache_path']}/#{mc_jar}" do
   action :create_if_missing
 end
 
-directory node['minecraft']['install_dir'] do
+directory node['minecraft']['dir'] do
   owner uid
   group gid
   mode '0755'
@@ -60,15 +60,15 @@ directory node['minecraft']['install_dir'] do
 end
 
 execute 'copy minecraft server jar file' do
-  cwd node['minecraft']['install_dir']
+  cwd node['minecraft']['dir']
   command "cp -p #{Chef::Config['file_cache_path']}/#{mc_jar} ."
-  creates "#{node['minecraft']['install_dir']}/#{mc_jar}"
-  not_if { ::File.exists?("#{node['minecraft']['install_dir']}/#{mc_jar}") }
+  creates "#{node['minecraft']['dir']}/#{mc_jar}"
+  not_if { ::File.exists?("#{node['minecraft']['dir']}/#{mc_jar}") }
 end
 
 %w[ops.txt server.properties banned-ips.txt
    banned-players.txt white-list.txt].each do |template|
-  template "#{node['minecraft']['install_dir']}/#{template}" do
+  template "#{node['minecraft']['dir']}/#{template}" do
     source "#{template}.erb"
     owner uid
     group gid
@@ -87,7 +87,7 @@ end
 
 logrotate_app "minecraft" do
   cookbook "logrotate"
-  path "#{node['minecraft']['install_dir']}/server.log"
+  path "#{node['minecraft']['dir']}/server.log"
   frequency node['minecraft']['logrotate']['frequency']
   rotate node['minecraft']['logrotate']['rotate']
   create "644 #{uid} #{gid}"

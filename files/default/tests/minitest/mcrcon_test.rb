@@ -18,7 +18,7 @@ describe_recipe 'minecraft::mcrcon' do
   end
 
   describe 'ensures rcon is enabled on the server' do
-    let(:config) { file("#{node['minecraft']['install_dir']}/server.properties") }
+    let(:config) { file("#{node['minecraft']['dir']}/server.properties") }
     it { config.must_include 'enable-rcon=true' }
   end
 end
