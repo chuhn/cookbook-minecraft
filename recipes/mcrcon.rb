@@ -36,16 +36,21 @@ unless FileTest.exists?(File.join(bin_path, "mcrcon"))
   end
 
   remote_file "mcrcon" do
-    path "#{Chef::Config[:file_cache_path]}/mccron.zip"
+    path "#{Chef::Config[:file_cache_path]}/mcrcon.zip"
     source "http://downloads.sourceforge.net/project/mcrcon/#{version}/mcrcon-#{version}-src.zip"
   end
 
   execute "extract-mcrcon" do
-    command "cd #{Chef::Config[:file_cache_path]} && unzip mcrcon.zip"
-    creates "#{Chef::Config[:file_cache_path]}/mccron-#{version}-src"
+    command "cd #{Chef::Config[:file_cache_path]} && unzip -d mcrcon-#{version}-src mcrcon.zip"
+    creates "#{Chef::Config[:file_cache_path]}/mcrcon-#{version}-src"
   end
 
   execute "install-mcrcon" do
-    command "cd #{Chef::Config[:file_cache_path]}/mcrcon-#{version}-src && gcc mcrcon.c -o mcrcon && cp mcrcon #{bin_path}"
+    cwd "#{Chef::Config[:file_cache_path]}/mcrcon-#{version}-src"
+    command <<-EOF
+      gcc mcrcon.c -o mcrcon &&
+      install -m 0755 -o root -g root mcrcon #{bin_path}
+    EOF
+    not_if { ::File.exists?("#{bin_path}/mcrcon") }
   end
 end
