@@ -30,8 +30,8 @@ include_recipe 'logrotate'
 
 jar_name = "#{node['minecraft']['jar']}.#{node['minecraft']['version']}.jar"
 minecraft_jar = "#{Chef::Config['file_cache_path']}/minecraft_server.jar"
-uid = default['minecraft']['user']
-gid = default['minecraft']['group']
+uid = node['minecraft']['user']
+gid = node['minecraft']['group']
 
 node.default['minecraft']['jar_name'] = jar_name
 
