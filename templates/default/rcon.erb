@@ -1,3 +1,0 @@
-# Port <%= node['minecraft']['properties']['rcon.port'] -%> for rcon
--A FWR -p tcp -m tcp -s localhost --dport <%= node['minecraft']['properties']['rcon.port'] -%> -j ACCEPT
--A FWR -p tcp -m tcp --dport <%= node['minecraft']['properties']['rcon.port'] -%> -j DROP

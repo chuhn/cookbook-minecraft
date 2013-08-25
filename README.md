@@ -55,7 +55,6 @@ http://www.minecraftwiki.net/wiki/Server.properties#Minecraft_server_properties
 * `default['minecraft']['properties']['allow-flight']`
 * `default['minecraft']['properties']['server-port']`
 * `default['minecraft']['properties']['level-type']`
-* `default['minecraft']['properties']['enable_rcon']`
 * `default['minecraft']['properties']['level-seed']`
 * `default['minecraft']['properties']['server-ip']`
 * `default['minecraft']['properties']['max-build-height']`

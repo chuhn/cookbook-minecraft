@@ -29,9 +29,6 @@ include_recipe 'java::default'
 include_recipe 'logrotate'
 include_recipe 'iptables'
 
-# Make sure rcon is closed to the public
-iptables_rule "rcon"
-
 mc_jar = "minecraft_server.#{node['minecraft']['version']}.jar"
 source_url = "#{node['minecraft']['base_url']}/#{node['minecraft']['version']}/#{mc_jar}"
 
@@ -87,16 +84,4 @@ runit_service "minecraft"
 service 'minecraft' do
   supports :status => true, :restart => true, :reload => true
   reload_command "#{node['runit']['sv_bin']} hup #{node['runit']['service_dir']}/minecraft"
-end
-
-logrotate_app "minecraft" do
-  cookbook "logrotate"
-  path "#{node['minecraft']['dir']}/server.log"
-  frequency node['minecraft']['logrotate']['frequency']
-  rotate node['minecraft']['logrotate']['rotate']
-  create "644 #{uid} #{gid}"
-end
-
-if node['minecraft']['use_rcon']
-  include_recipe 'minecraft::mcrcon'
 end
