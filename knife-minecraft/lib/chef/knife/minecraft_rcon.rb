@@ -14,21 +14,36 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require 'chef/knife/minecraft/core'
+require 'knife-minecraft/helpers'
+
 class Chef
   class Knife
-    class Minecraft
-      module Core
+    class MinecraftRcon < Knife
 
-        def self.included(includer)
-          includer.class_eval do
+      include Knife::Minecraft::Core
+      include Knife::Minecraft::Helpers
 
-            deps do
-              require 'chef/knife'
-              require 'chef/shell/ext'
-              Chef::Knife.load_deps
-            end
-          end
-        end
+      banner 'knife minecraft rcon NODE_NAME'
+
+      option :minecraft_node,
+        :short => '-l FQDN|IP',
+        :long => '--minecraft-node FQDN|IP',
+        :description => 'Minecraft enabled node',
+        :required => true
+
+      option :minecraft_ssh_user,
+        :short => '-X USERNAME',
+        :long => '--minecraft-ssh-user USERNAME',
+        :description => "SSH user for the minecraft server"
+
+      option :rcon_password,
+        :short => "-p RCON_PASSWORD",
+        :long => "--rcon-password RCON_PASSWORD",
+        :description => "Password for rcon"
+
+      def run
+        knife_ssh(config[:minecraft_node], "mcrcon -H localhost -p #{config[:rcon_password]} -t")
       end
     end
   end

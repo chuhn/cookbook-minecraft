@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.executables = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files = gem.files.grep(%r{^(test|spec|features)/})
 
-  gem.add_dependency "chef", ">= 0.10.10"
+  gem.add_dependency "chef", ">= 0.11.0"
 
   gem.require_paths = ["lib"]
 end
