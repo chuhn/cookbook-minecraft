@@ -31,3 +31,6 @@ suites:
   - recipe[minecraft]
   - recipe[minitest-handler]
   attributes:
+    minecraft:
+      properties:
+        rcon.password: "notch"
