@@ -31,9 +31,9 @@ default['minecraft']['properties']['allow-flight']        = false
 default['minecraft']['properties']['server-port']         = 25565
 default['minecraft']['properties']['level-type']          = 'DEFAULT'
 if node['minecraft']['use_rcon']
-  default['minecraft']['properties']['enable-rcon']         = true
-  default['minecraft']['properties']['enable.port']         = 25575
-  default['minecraft']['properties']['enable.password']     = ""
+  default['minecraft']['properties']['enable-rcon']       = true
+  default['minecraft']['properties']['rcon.port']         = 25575
+  default['minecraft']['properties']['rcon.password']     = ""
 else
   default['minecraft']['properties']['enable-rcon']         = false
 end
@@ -43,9 +43,12 @@ default['minecraft']['properties']['max-build-height']    = 256
 default['minecraft']['properties']['spawn-npcs']          = true
 default['minecraft']['properties']['white-list']          = false
 default['minecraft']['properties']['spawn-animals']       = true
+default['minecraft']['properties']['snooper-enabled']     = true
 default['minecraft']['properties']['online-mode']         = true
 default['minecraft']['properties']['pvp']                 = true
+default['minecraft']['properties']['texture-pack']        = ''
 default['minecraft']['properties']['difficulty']          = 1
+default['minecraft']['properties']['force-gamemode']      = false
 default['minecraft']['properties']['gamemode']            = 0
 default['minecraft']['properties']['max-players']         = 20
 default['minecraft']['properties']['spawn-monsters']      = true
