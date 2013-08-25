@@ -27,6 +27,10 @@
 include_recipe 'runit'
 include_recipe 'java::default'
 include_recipe 'logrotate'
+include_recipe 'iptables'
+
+# Make sure rcon is closed to the public
+iptables_rule "rcon"
 
 mc_jar = "minecraft_server.#{node['minecraft']['version']}.jar"
 source_url = "#{node['minecraft']['base_url']}/#{node['minecraft']['version']}/#{mc_jar}"

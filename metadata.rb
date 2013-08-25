@@ -9,7 +9,7 @@ name              'minecraft'
 recipe 'minecraft', 'Installs and configures minecraft server.'
 recipe 'minecraft::mcrcon', 'Installs and configures mcrcon.'
 
-%w{ runit java build-essential logrotate}.each do |dep|
+%w{ runit java build-essential logrotate iptables}.each do |dep|
   depends dep
 end
 
