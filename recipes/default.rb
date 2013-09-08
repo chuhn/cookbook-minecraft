@@ -24,8 +24,8 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-include_recipe 'java::default'
-include_recipe 'runit'
+#include_recipe 'java::default'
+#include_recipe 'runit'
 
 minecraft_jar = "#{Chef::Config['file_cache_path']}/#{node['minecraft']['jar']}"
 
@@ -68,13 +68,23 @@ end
     group node['minecraft']['user']
     mode 0644
     action :create
-    notifies :restart, 'runit_service[minecraft]'
+    notifies :restart,  node['minecraft']['runit']?'runit_service[minecraft]':'service[minecraft]'
   end
 end
 
-runit_service 'minecraft'
+if node['minecraft']['runit'] 
+  runit_service 'minecraft'
+else
+  template '/etc/init.d/minecraft' do
+    source 'minecraft.init.erb'
+    mode 0755
+  end
+end
+
 
 service 'minecraft' do
+  action [ :enable, :start ]
   supports :status => true, :restart => true, :reload => true
-  reload_command "#{node['runit']['sv_bin']} hup #{node['runit']['service_dir']}/minecraft"
+  reload_command "#{node['runit']['sv_bin']} hup #{node['runit']['service_dir']}/minecraft" if node['minecraft']['runit']
 end
+  

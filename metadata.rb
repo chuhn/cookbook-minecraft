@@ -8,9 +8,9 @@ name              'minecraft'
 
 recipe 'minecraft', 'Installs and configures minecraft server.'
 
-%w{ runit java }.each do |dep|
-  depends dep
-end
+#%w{ runit java }.each do |dep|
+#  depends dep
+#end
 
 %w{ debian ubuntu centos }.each do |os|
   supports os
