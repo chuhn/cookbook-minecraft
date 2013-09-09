@@ -25,7 +25,7 @@ MAXHEAP=<%= node[:minecraft][:xmx] %>
 MINHEAP==<%= node[:minecraft][:xms] %>
 HISTORY=1024
 CPU_COUNT=1
-INVOCATION="java -Xmx${MAXHEAP}M -Xms${MINHEAP}M -XX:+UseConcMarkSweepGC \
+INVOCATION="java -Xmx${MAXHEAP} -Xms${MINHEAP} -XX:+UseConcMarkSweepGC \
 -XX:+CMSIncrementalPacing -XX:ParallelGCThreads=$CPU_COUNT -XX:+AggressiveOpts \
 -jar $SERVICE $OPTIONS"
 
@@ -52,6 +52,7 @@ mc_start() {
       echo "$SERVICE is now running."
     else
       echo "Error! Could not start $SERVICE!"
+      exit 1
     fi
   fi
 }
