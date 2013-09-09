@@ -1,10 +1,10 @@
 default['minecraft']['user']                = 'minecraft'
 default['minecraft']['install_dir']         = '/srv/minecraft'
-default['minecraft']['base_url']            = 'https://s3.amazonaws.com/MinecraftDownload/launcher'
-default['minecraft']['jar']                 = 'minecraft_server.jar'
+default['minecraft']['base_url']            = 'https://s3.amazonaws.com/Minecraft.Download/versions/1.6.2'
+default['minecraft']['jar']                 = 'minecraft_server.1.6.2.jar'
 default['minecraft']['checksum']            = '7a1abdac5d412b7eebefd84030d40c1591c17325801dba9cbbeb3fdf3c374553'
 
-default['minecraft']['xms']                 = '512M'
+default['minecraft']['xms']                 = '128M'
 default['minecraft']['xmx']                 = '512M'
 default['minecraft']['ipv6']                = false
 
