@@ -24,8 +24,16 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-#include_recipe 'java::default'
-#include_recipe 'runit'
+node.override['java']['jdk_version'] = 7
+
+include_recipe 'java::default'
+
+if node['minecraft']['use_runit']
+  include_recipe 'runit'
+else
+  # we need this for our init script:
+  package 'screen'
+end
 
 minecraft_jar = "#{Chef::Config['file_cache_path']}/#{node['minecraft']['jar']}"
 
@@ -57,7 +65,7 @@ end
 execute 'copy-minecraft_server.jar' do
   cwd node['minecraft']['install_dir']
   command "cp -p #{minecraft_jar} ."
-  creates "#{node['minecraft']['install_dir']}/minecraft_server.jar"
+  creates "#{node['minecraft']['install_dir']}/#{node['minecraft']['jar']}"
 end
 
 %w[ops.txt server.properties banned-ips.txt
