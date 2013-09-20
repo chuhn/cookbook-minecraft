@@ -56,7 +56,7 @@ remote_file minecraft_jar do
   checksum node['minecraft']['checksum']
   owner node['minecraft']['user']
   group node['minecraft']['user']
-  mode '0644'
+  mode 0644
   action :create_if_missing
 end
 
