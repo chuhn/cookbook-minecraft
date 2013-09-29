@@ -74,7 +74,7 @@ execute 'copy-minecraft_server.jar' do
   creates "#{node['minecraft']['install_dir']}/#{node['minecraft']['jar']}"
 end
 
-include_recipe "minecraft::service"
+include_recipe 'minecraft::service'
 
 %w[ops.txt server.properties banned-ips.txt
    banned-players.txt white-list.txt].each do |template|
