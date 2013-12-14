@@ -28,7 +28,7 @@ default['minecraft']['xms']                 = '128M'
 default['minecraft']['xmx']                 = '512M'
 # Additional options to be passed to java, for runit only
 default['minecraft']['java-options']        = ''
-default['minecraft']['init_style']          = 'mark2'
+default['minecraft']['init_style']          = 'runit'
 
 default['minecraft']['ops']                 = []
 default['minecraft']['banned-ips']          = []
