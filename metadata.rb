@@ -14,3 +14,7 @@ depends 'java'
 %w{ debian ubuntu centos }.each do |os|
   supports os
 end
+
+%w{ debian ubuntu }.each do |os|
+  depends apt
+end
