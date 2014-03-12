@@ -50,7 +50,7 @@ end
 directory node['minecraft']['install_dir'] do
   owner node['minecraft']['user']
   group node['minecraft']['group']
-  mode '0755'
+  mode 0755
   action :create
   recursive true
 end
