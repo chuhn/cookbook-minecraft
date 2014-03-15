@@ -38,14 +38,7 @@ log "Using #{jar_name}, stored locally as #{minecraft_jar} and fetched from #{so
 
 include_recipe 'minecraft::user'
 
-remote_file minecraft_jar do
-  source source_url
-  checksum node['minecraft']['checksum']
-  owner node['minecraft']['user']
-  group node['minecraft']['group']
-  mode 0644
-  action :create_if_missing
-end
+jar_name = minecraft_file(node['minecraft']['url'])
 
 directory node['minecraft']['install_dir'] do
   owner node['minecraft']['user']
