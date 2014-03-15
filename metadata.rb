@@ -11,6 +11,6 @@ recipe 'minecraft', 'Installs and configures minecraft server.'
 depends 'java'
 #depends 'runit'
 
-%w{ debian ubuntu centos }.each do |os|
+%w(debian ubuntu centos).each do |os|
   supports os
 end
