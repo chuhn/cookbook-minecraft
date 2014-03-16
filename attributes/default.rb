@@ -19,7 +19,6 @@
 
 default['minecraft']['user']                = 'mcserver'
 default['minecraft']['group']               = 'mcserver'
-default['minecraft']['url']                 = 'https://s3.amazonaws.com/Minecraft.Download/versions/1.7.5/minecraft_server.1.7.5.jar'
 default['minecraft']['install_dir']         = '/srv/minecraft'
 default['minecraft']['base_url']            = 'https://s3.amazonaws.com/Minecraft.Download/versions/1.6.2'
 default['minecraft']['jar']                 = 'minecraft_server.1.6.2.jar'
