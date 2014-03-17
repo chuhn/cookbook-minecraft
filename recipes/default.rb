@@ -41,11 +41,11 @@ include_recipe 'minecraft::user'
 jar_name = minecraft_file(node['minecraft']['url'])
 
 directory node['minecraft']['install_dir'] do
+  recursive true
   owner node['minecraft']['user']
   group node['minecraft']['group']
   mode 0755
   action :create
-  recursive true
 end
 
 execute 'copy-minecraft_server.jar' do
