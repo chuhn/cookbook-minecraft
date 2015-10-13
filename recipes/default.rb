@@ -55,7 +55,7 @@ execute 'copy-minecraft_server.jar' do
 end
 
 include_recipe 'minecraft::service'
-include_recipe "minecraft::#{node['minecraft']['install_type']}"
+include_recipe "minecraft::vanilla"
 
 %w[ops.txt server.properties banned-ips.txt
    banned-players.txt white-list.txt].each do |template|
