@@ -44,7 +44,7 @@ directory node['minecraft']['install_dir'] do
   recursive true
   owner node['minecraft']['user']
   group node['minecraft']['group']
-  mode 0755
+  mode 0o755
   action :create
 end
 
@@ -63,7 +63,7 @@ include_recipe 'minecraft::vanilla'
     source "#{template}.erb"
     owner node['minecraft']['user']
     group node['minecraft']['group']
-    mode 0644
+    mode 0o644
     action :create
     notifies :restart,  node['minecraft']['runit']?'runit_service[minecraft]':'service[minecraft]'
   end
